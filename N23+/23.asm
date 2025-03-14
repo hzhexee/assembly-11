@@ -1,10 +1,11 @@
 section .data
-    prompt_a db "Enter a: ", 0
-    prompt_b db "Enter b: ", 0
-    prompt_c db "Enter c: ", 0
-    prompt_d db "Enter d: ", 0
-    prompt_e db "Enter e: ", 0
-    result_msg db "Result (a+b+c)+(d-e) = ", 0
+    prompt_a db "Введите a: ", 0
+    prompt_b db "Введите b: ", 0
+    prompt_c db "Введите c: ", 0
+    prompt_d db "Введите d: ", 0
+    prompt_e db "Введите e: ", 0
+    result_msg db "Результат (a+b+c)+(d-e) = ", 0
+    error_msg db "Ошибка: введите число, а не текст!", 10, 0
     format_in db "%d", 0
     format_out db "%d", 10, 0  ; %d followed by newline
 
@@ -36,6 +37,10 @@ main:
     call scanf
     add esp, 8
     
+    ; Check if scanf was successful
+    cmp eax, 1
+    jne input_error
+    
     ; Ask for and read b
     push prompt_b
     call printf
@@ -45,6 +50,10 @@ main:
     push format_in
     call scanf
     add esp, 8
+    
+    ; Check if scanf was successful
+    cmp eax, 1
+    jne input_error
     
     ; Ask for and read c
     push prompt_c
@@ -56,6 +65,10 @@ main:
     call scanf
     add esp, 8
     
+    ; Check if scanf was successful
+    cmp eax, 1
+    jne input_error
+    
     ; Ask for and read d
     push prompt_d
     call printf
@@ -66,6 +79,10 @@ main:
     call scanf
     add esp, 8
     
+    ; Check if scanf was successful
+    cmp eax, 1
+    jne input_error
+    
     ; Ask for and read e
     push prompt_e
     call printf
@@ -75,6 +92,10 @@ main:
     push format_in
     call scanf
     add esp, 8
+    
+    ; Check if scanf was successful
+    cmp eax, 1
+    jne input_error
     
     ; Calculate (a+b+c)+(d-e) using registers
     mov eax, [a]      ; eax = a
@@ -96,6 +117,15 @@ main:
     call printf
     add esp, 8
     
+    jmp exit_program
+    
+input_error:
+    ; Display error message
+    push error_msg
+    call printf
+    add esp, 4
+    
+exit_program:
     ; Epilogue
     mov esp, ebp
     pop ebp
