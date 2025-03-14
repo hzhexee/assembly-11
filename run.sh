@@ -45,15 +45,15 @@ run_task() {
             executable="./425"
             ;;
         5)
-            task_dir="$PROJECT_DIR/N514+"
+            task_dir="$PROJECT_DIR/N514++"
             executable="./514"
             ;;
         6)
-            task_dir="$PROJECT_DIR/N524+"
+            task_dir="$PROJECT_DIR/N524++"
             executable="./524"
             ;;
         7)
-            task_dir="$PROJECT_DIR/N640+"
+            task_dir="$PROJECT_DIR/N640++"
             executable="./64"
             ;;
         *)
