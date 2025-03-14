@@ -14,6 +14,7 @@ section .data
     final_values db "Итоговые значения: x = %d, y = %d, z = %d", 10, 0
     
     format_in db "%d", 0
+    error_msg db "Ошибка: введено не число! Перезапустите программу.", 10, 0
 
 section .bss
     x resd 1    ; Переменная x
@@ -45,6 +46,10 @@ main:
     call scanf
     add esp, 8
     
+    ; Проверка успешности ввода
+    cmp eax, 1
+    jne input_error
+    
     ; Запрос и чтение y
     push prompt_y
     call printf
@@ -55,6 +60,10 @@ main:
     call scanf
     add esp, 8
     
+    ; Проверка успешности ввода
+    cmp eax, 1
+    jne input_error
+    
     ; Запрос и чтение z
     push prompt_z
     call printf
@@ -64,6 +73,10 @@ main:
     push format_in
     call scanf
     add esp, 8
+    
+    ; Проверка успешности ввода
+    cmp eax, 1
+    jne input_error
     
     ; Вычисляем сумму x + y + z
     mov eax, [x]
@@ -134,4 +147,16 @@ print_final_values:
     mov esp, ebp
     pop ebp
     xor eax, eax    ; Возвращаем 0
+    ret
+
+input_error:
+    ; Вывод сообщения об ошибке
+    push error_msg
+    call printf
+    add esp, 4
+    
+    ; Эпилог
+    mov esp, ebp
+    pop ebp
+    mov eax, 1      ; Возвращаем код ошибки 1
     ret

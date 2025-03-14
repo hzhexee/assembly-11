@@ -9,6 +9,7 @@ section .data
     result_case2 db "x не находится в интервале (-5, 5). y = 7-x = %d", 10, 0
     
     format_in db "%d", 0
+    error_msg db "Ошибка: введено не число! Перезапустите программу.", 10, 0
 
 section .bss
     x resd 1    ; Переменная x
@@ -38,6 +39,10 @@ main:
     push format_in
     call scanf
     add esp, 8
+    
+    ; Проверка успешности ввода
+    cmp eax, 1
+    jne input_error
     
     ; Проверяем условие -5 < x < 5
     mov eax, [x]
@@ -77,4 +82,16 @@ end_program:
     mov esp, ebp
     pop ebp
     xor eax, eax    ; Возвращаем 0
+    ret
+
+input_error:
+    ; Вывод сообщения об ошибке
+    push error_msg
+    call printf
+    add esp, 4
+    
+    ; Эпилог
+    mov esp, ebp
+    pop ebp
+    mov eax, 1      ; Возвращаем код ошибки 1
     ret
