@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Путь к корневой директории проекта
-PROJECT_DIR="/home/hzhex/AssemblyTimofey"
+PROJECT_DIR="/home/kali/assembly-t"
 
 # Функция для отображения меню
 show_menu() {
