@@ -29,31 +29,31 @@ run_task() {
     
     case $task_number in
         1)
-            task_dir="$PROJECT_DIR/N23++"
+            task_dir="$PROJECT_DIR/2.3"
             executable="./23"
             ;;
         2)
-            task_dir="$PROJECT_DIR/N323++"
+            task_dir="$PROJECT_DIR/3.23"
             executable="./323"
             ;;
         3)
-            task_dir="$PROJECT_DIR/N422++"
+            task_dir="$PROJECT_DIR/4.22"
             executable="./422"
             ;;
         4)
-            task_dir="$PROJECT_DIR/N425++"
+            task_dir="$PROJECT_DIR/4.25"
             executable="./425"
             ;;
         5)
-            task_dir="$PROJECT_DIR/N514++"
+            task_dir="$PROJECT_DIR/5.14"
             executable="./514"
             ;;
         6)
-            task_dir="$PROJECT_DIR/N524++"
+            task_dir="$PROJECT_DIR/5.24"
             executable="./524"
             ;;
         7)
-            task_dir="$PROJECT_DIR/N640++"
+            task_dir="$PROJECT_DIR/6.40"
             executable="./64"
             ;;
         *)
