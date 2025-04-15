@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Путь к корневой директории проекта
-PROJECT_DIR="/home/kali/assembly-t"
+PROJECT_DIR="/home/kali/assembly-11"
 
 # Функция для отображения меню
 show_menu() {
